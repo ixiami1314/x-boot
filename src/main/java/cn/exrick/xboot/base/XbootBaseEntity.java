@@ -36,6 +36,9 @@ public abstract class XbootBaseEntity implements Serializable{
     @ApiModelProperty(value = "创建者")
     private String createBy;
 
+    @ApiModelProperty(value = "状态")
+    private Integer status;
+
     @CreatedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

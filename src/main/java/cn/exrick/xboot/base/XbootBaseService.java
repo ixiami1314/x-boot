@@ -15,14 +15,14 @@ import java.util.List;
 @FunctionalInterface
 public interface XbootBaseService<E, ID extends Serializable> {
 
-    public XbootBaseDao<E, ID> getRepository();
+    XbootBaseDao<E, ID> getRepository();
     
     /**
      * 根据ID获取
      * @param id
      * @return
      */
-    public default E get(ID id) {
+    default E get(ID id) {
         return getRepository().getOne(id);
     }
 
@@ -30,7 +30,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * 获取所有列表
      * @return
      */
-    public default List<E> getAll() {
+    default List<E> getAll() {
         return getRepository().findAll();
     }
 
@@ -38,7 +38,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * 获取总数
      * @return
      */
-    public default Long getTotalCount() {
+    default Long getTotalCount() {
         return getRepository().count();
     }
 
@@ -47,7 +47,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param entity
      * @return
      */
-    public default E save(E entity) {
+    default E save(E entity) {
 
         return getRepository().save(entity);
     }
@@ -57,7 +57,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param entity
      * @return
      */
-    public default E update(E entity) {
+    default E update(E entity) {
         return getRepository().saveAndFlush(entity);
     }
 
@@ -66,7 +66,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param entities
      * @return
      */
-    public default Iterable<E> saveOrUpdateAll(Iterable<E> entities) {
+    default Iterable<E> saveOrUpdateAll(Iterable<E> entities) {
         return getRepository().saveAll(entities);
     }
 
@@ -74,7 +74,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * 删除
      * @param entity
      */
-    public default void delete(E entity) {
+    default void delete(E entity) {
         getRepository().delete(entity);
     }
 
@@ -82,7 +82,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * 根据Id删除
      * @param id
      */
-    public default void delete(ID id) {
+    default void delete(ID id) {
         getRepository().deleteById(id);
     }
 
@@ -90,14 +90,14 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * 批量删除
      * @param entities
      */
-    public default void delete(Iterable<E> entities) {
+    default void delete(Iterable<E> entities) {
         getRepository().deleteAll(entities);
     }
 
     /**
      * 清空缓存，提交持久化
      */
-    public default void flush() {
+    default void flush() {
         getRepository().flush();
     }
 
@@ -106,7 +106,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param spec
      * @return
      */
-    public default List<E> findAll(Specification<E> spec) {
+    default List<E> findAll(Specification<E> spec) {
         return getRepository().findAll(spec);
     }
 
@@ -115,7 +115,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param pageable
      * @return
      */
-    public default Page<E> findAll(Pageable pageable){
+    default Page<E> findAll(Pageable pageable){
         return getRepository().findAll(pageable);
     }
 
@@ -125,7 +125,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param pageable
      * @return
      */
-    public default Page<E> findAll(Specification<E> spec, Pageable pageable) {
+    default Page<E> findAll(Specification<E> spec, Pageable pageable) {
         return getRepository().findAll(spec, pageable);
     }
 
@@ -134,7 +134,7 @@ public interface XbootBaseService<E, ID extends Serializable> {
      * @param spec
      * @return
      */
-    public default long count(Specification<E> spec) {
+    default long count(Specification<E> spec) {
         return getRepository().count(spec);
     }
 }
